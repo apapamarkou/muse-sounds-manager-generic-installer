@@ -73,7 +73,7 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 
 ## Acknowledgments
 
-- [Muse Sounds](https://muse-cdn.com/) for providing the software.
+- [Musescore](https://musescore.org/) for providing the software.
 - The open-source community for supporting and contributing to free software.
 
 ## Disclaimer
