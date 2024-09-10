@@ -18,9 +18,7 @@ Before running the script, ensure you have the following:
 
 ## Install Option 1 : "The Quick and easy"
 
-You can run the installation script directly without cloning the repository. Use one of the following commands:
-
-### Using `wget`
+Copy the following command, paste it in a terminal and hit [ENTER]. Thats it!
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-generic-installer/main/install_muse_sounds_manager.sh | bash
