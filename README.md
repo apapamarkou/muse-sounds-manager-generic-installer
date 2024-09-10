@@ -74,7 +74,6 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 ## Acknowledgments
 
 - [Musescore](https://musescore.org/) for providing the software.
-- The open-source community for supporting and contributing to free software.
 
 ## Disclaimer
 
