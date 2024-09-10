@@ -34,7 +34,7 @@ wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-gene
 
 These commands will download and execute the script, installing the Muse Sounds Manager on your system.
 
-## Installation
+## Clone and install
 
 If you prefer to clone the repository and run the script manually, follow these steps:
 
