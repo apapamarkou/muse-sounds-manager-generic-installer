@@ -16,15 +16,9 @@ Before running the script, ensure you have the following:
 - `wget` installed for downloading the `.deb` package.
 - `ar` and `tar` commands available for extracting the `.deb` package.
 
-## Quick Install
+## Install Option 1 : "The Quick and easy"
 
 You can run the installation script directly without cloning the repository. Use one of the following commands:
-
-### Using `curl`
-
-```bash
-bash <(curl -s https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-generic-installer/main/install_muse_sounds_manager.sh)
-```
 
 ### Using `wget`
 
@@ -34,7 +28,7 @@ wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-gene
 
 These commands will download and execute the script, installing the Muse Sounds Manager on your system.
 
-## Clone and install
+## Install Option 2: "The long way"
 
 If you prefer to clone the repository and run the script manually, follow these steps:
 
