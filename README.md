@@ -51,6 +51,14 @@ If you prefer to clone the repository and run the script manually, follow these 
 
     This will download, extract, and install the Muse Sounds Manager to your system.
 
+## openSuSE only: fix "doesn't work"
+
+This installer and official `rpm` download wont work without installing `ca-certificates`
+
+```
+sudo zypper install ca-certificates*
+```
+
 ## Usage
 
 Once installed, you can find the Muse Sounds Manager in your application menus or launchers
