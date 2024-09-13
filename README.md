@@ -2,6 +2,10 @@
 
 This project provides a simple Bash script to download, extract, and install the Muse Sounds Manager from its `.deb` package. The script automates the process of setting up the necessary directories and copying files to their appropriate locations on your system.
 
+## Why create an alternative installer?
+
+While MuseScore provides excellent sound libraries, it doesn't offer a universal installer. This can be a challenge for users of independent distributions like Arch, Slackware, Solus, and others that don’t use the official supported package managers. This alternative installer simplifies the process, making it easy to set up the MuseScore Sound Manager on a wider range of systems.
+
 ## Features
 
 - **Automated Download**: Downloads the latest Muse Sounds Manager `.deb` package directly from the official source.
