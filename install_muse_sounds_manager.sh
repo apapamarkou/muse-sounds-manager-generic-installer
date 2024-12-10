@@ -16,50 +16,73 @@
 #  | || '_ \/ __| __/ _` | | |/ _ | '__|
 #  | || | | \__ | || (_| | | |  __| |
 # |___|_| |_|___/\__\__,_|_|_|\___|_|
-# 
+#
 # Author: Andrianos Papamarkou
 #
 
-# Define variables
-DEB_URL="https://muse-cdn.com/Muse_Sounds_Manager_Beta.deb"
-DOWNLOAD_DIR="$HOME/Downloads/muse-sounds-manager"
-DEB_FILE="$DOWNLOAD_DIR/Muse_Sounds_Manager_Beta.deb"
+# Variables
+PACKAGE_URL="https://muse-cdn.com/Muse_Sounds_Manager_x64.tar.gz"
+PACKAGE_NAME="Muse_Sounds_Manager_x64"
+INSTALL_DIR="/usr/local"
+BIN_DIR="$INSTALL_DIR/bin"
+ICON_DIR="/usr/share/icons/hicolor"
+DESKTOP_DIR="/usr/share/applications"
+TEMP_DIR="/tmp/$PACKAGE_NAME"
 
-# Create download directory if it doesn't exist
-mkdir -p "$DOWNLOAD_DIR"
-
-# Download the .deb package
-echo "Downloading .deb package from $DEB_URL..."
-wget -O "$DEB_FILE" "$DEB_URL"
-
-# Check if download was successful
-if [ ! -f "$DEB_FILE" ]; then
-    echo "Download failed. Exiting..."
-    exit 1
+# Check for root permissions
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root."
+  exit 1
 fi
 
-# Extract the .deb package
-echo "Extracting .deb package..."
-cd "$DOWNLOAD_DIR"
-ar x "$DEB_FILE"
+# Download the package
+echo "Downloading $PACKAGE_NAME..."
+wget -O "$TEMP_DIR.tar.gz" "$PACKAGE_URL"
 
-# Extract the data.tar.xz (or data.tar.gz)
-if [ -f "data.tar.xz" ]; then
-    tar -xvf data.tar.xz
-elif [ -f "data.tar.gz" ]; then
-    tar -xvf data.tar.gz
-else
-    echo "data.tar.xz or data.tar.gz not found. Exiting..."
-    exit 1
+# Extract the package
+echo "Extracting package..."
+mkdir -p "$TEMP_DIR"
+tar -xf "$TEMP_DIR.tar.gz" -C "$TEMP_DIR"
+
+# Find the exact version directory dynamically
+VERSION_DIR=$(find "$TEMP_DIR" -maxdepth 1 -type d -name "muse_sounds_manager_x64_*" | head -n 1)
+echo "Version directory: $VERSION_DIR"
+if [[ -z "$VERSION_DIR" ]]; then
+  echo "Version directory not found!"
+  exit 1
 fi
 
-# Copy the content folders (opt and usr) to the system
-echo "Copying content to the system..."
-sudo cp -r opt/* /opt/
-sudo cp -r usr/* /usr/
+VERSION=$(basename "$VERSION_DIR" | grep -oP "(?<=muse_sounds_manager_x64_)[\d.]+")
+echo "Detected version: $VERSION"
+
+# Copy binaries
+echo "Installing binaries..."
+mkdir -p "$BIN_DIR"
+cp -v "$VERSION_DIR/bin/"* "$BIN_DIR/"
+
+# Copy icons
+echo "Installing icons..."
+find "$VERSION_DIR/res/icons/hicolor" -type d | while read -r dir; do
+  DEST_DIR="$ICON_DIR/${dir#*/hicolor/}"
+  mkdir -p "$DEST_DIR"
+  cp -v "$dir"/* "$DEST_DIR/"
+done
+
+# Update the icon cache
+echo "Updating icon cache..."
+gtk-update-icon-cache -q -t /usr/share/icons/hicolor
+
+# Install and update the .desktop file
+echo "Installing .desktop file..."
+DESKTOP_FILE="$VERSION_DIR/res/muse-sounds-manager.desktop"
+sed -i "s|Exec=muse-sounds-manager|Exec=$BIN_DIR/muse-sounds-manager|g" "$DESKTOP_FILE"
+cp -v "$DESKTOP_FILE" "$DESKTOP_DIR/"
+
+# Set executable permissions for the binaries
+chmod +x "$BIN_DIR/muse-sounds-manager"
 
 # Cleanup
-echo "Cleaning up..."
-rm -rf "$DOWNLOAD_DIR"
+trap 'rm -rf "/tmp/$PACKAGE_NAME.tar.gz" "$TEMP_DIR" "$VERSION_DIR"' EXIT
 
-echo "Installation complete."
+
+echo "Installation completed successfully!"
