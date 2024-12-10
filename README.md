@@ -30,7 +30,7 @@ Before running the script, ensure you have the following:
 Run the following command to download and install the Muse Sounds Manager:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-generic-installer/main/install_muse_sounds_manager.sh | bash
+wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-generic-installer/main/install_muse_sounds_manager.sh | sudo bash
 ```
 
 This command will download and execute the script, setting up the Muse Sounds Manager on your system.
@@ -40,7 +40,7 @@ This command will download and execute the script, setting up the Muse Sounds Ma
 If you need to remove the Muse Sounds Manager, run the uninstaller script:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-generic-installer/main/uninstall_muse_sounds_manager.sh | bash
+wget -qO- https://raw.githubusercontent.com/apapamarkou/muse-sounds-manager-generic-installer/main/uninstall_muse_sounds_manager.sh | sudo bash
 ```
 
 This command will remove all installed files and clean up your system.
