@@ -6,7 +6,7 @@ This project provides a universal Bash script to download, extract, and install 
 
 ## Why create this installer?
 
-While MuseScore now provides a universal `.tar.gz` installer for the Muse Sounds Manager, the package does not handle system integration (e.g., creating `.desktop` entries or moving binaries and icons to standard directories). This script bridges that gap, ensuring a smooth installation experience and proper integration if your Linux system does not support **deb** or **rpm** packages (eg Solus, Slackware).
+While MuseScore now provides a universal `.tar.gz` installer for the Muse Sounds Manager, the package does not handle system integration (e.g., creating `.desktop` entries or moving binaries and icons to standard directories). This script bridges that gap, ensuring a smooth installation experience and proper integration if your Linux system does not support **deb** or **rpm** packages (eg Arch, Solus, Slackware).
 
 ## Features
 
