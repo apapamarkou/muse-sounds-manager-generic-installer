@@ -50,7 +50,7 @@ This command will remove all installed files and clean up your system.
 Both this installer and the official `.rpm` download require updated `ca-certificates` to function properly. To ensure it works, install the packages:
 
 ```bash
-sudo zypper install ca-certificates*
+sudo zypper install 'ca-certificates*'
 ```
 
 ## Usage
