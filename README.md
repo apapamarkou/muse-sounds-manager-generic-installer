@@ -53,6 +53,12 @@ Both this installer and the official `.rpm` download require updated `ca-certifi
 sudo zypper install 'ca-certificates*'
 ```
 
+Also correct system certification path
+
+```bash
+sudo mkdir -p /etc/ssl/certs
+sudo ln -sf /etc/ssl/ca-bundle.pem /etc/ssl/certs/ca-certificates.crt
+```
 ## Usage
 
 Once installed, you can find the Muse Sounds Manager in your application menus or launch it directly by typing `muse-sounds-manager` in a terminal.
