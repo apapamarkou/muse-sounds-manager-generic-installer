@@ -45,14 +45,16 @@ mkdir -p "$TEMP_DIR"
 tar -xf "$TEMP_DIR.tar.gz" -C "$TEMP_DIR"
 
 # Find the exact version directory dynamically
-VERSION_DIR=$(find "$TEMP_DIR" -maxdepth 1 -type d -name "muse_sounds_manager_x64_*" | head -n 1)
+VERSION_DIR=$(find "$TEMP_DIR" -maxdepth 1 -type d -name "Muse_Sounds_Manager_x64_*" | head -n 1)
 echo "Version directory: $VERSION_DIR"
 if [[ -z "$VERSION_DIR" ]]; then
   echo "Version directory not found!"
+  echo "The Extracted folder contains :"
+  find "$TEMP_DIR" -type d
   exit 1
 fi
 
-VERSION=$(basename "$VERSION_DIR" | grep -oP "(?<=muse_sounds_manager_x64_)[\d.]+")
+VERSION=$(basename "$VERSION_DIR" | grep -oP "(?<=Muse_Sounds_Manager_x64_)[\d.]+")
 echo "Detected version: $VERSION"
 
 # Copy binaries
@@ -82,7 +84,7 @@ cp -v "$DESKTOP_FILE" "$DESKTOP_DIR/"
 chmod +x "$BIN_DIR/muse-sounds-manager"
 
 # Cleanup
-trap 'rm -rf "/tmp/$PACKAGE_NAME.tar.gz" "$TEMP_DIR" "$VERSION_DIR"' EXIT
+trap 'rm -rf "/tmp/$PACKAGE_NAME.tar.gz" "$TEMP_DIR"' EXIT
 
 
 echo "Installation completed successfully!"
