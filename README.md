@@ -73,4 +73,4 @@ Contributions to this project are welcome. Feel free to submit a pull request or
 
 ## Disclaimer
 
-This script is provided "as is" without any warranties. Use it at your own risk.
+This script is provided "as is" without any warranties.
