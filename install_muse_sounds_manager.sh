@@ -85,6 +85,10 @@ chmod +x "$BIN_DIR/muse-sounds-manager"
 
 # Cleanup
 trap 'rm -rf "/tmp/$PACKAGE_NAME.tar.gz" "$TEMP_DIR"' EXIT
+# Reset Muse
+rm -rf ~/.config/Muse*
+rm -rf ~/.local/share/Muse*
+rm -rf ~/.cache/Muse*
 
 
 echo "Installation completed successfully!"
